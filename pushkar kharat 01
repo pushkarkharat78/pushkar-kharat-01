@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050505" />
+
+  <title>Trade With Pushkar | Trading Community</title>
+  <meta
+    name="description"
+    content="Join Trade With Pushkar and get access to trading insights, market updates and our Telegram community."
+  />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #050505;
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ---------- GLOBAL ---------- */
+
+    .container {
+      width: min(1100px, 92%);
+      margin: auto;
+    }
+
+    .glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: #ff2020;
+      filter: blur(180px);
+      opacity: .08;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .glow.one {
+      top: -200px;
+      left: -180px;
+    }
+
+    .glow.two {
+      bottom: -250px;
+      right: -180px;
+      background: #146cff;
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(5,5,5,.72);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: -.5px;
+    }
+
+    .logo span {
+      color: #ff3030;
+    }
+
+    .nav-btn {
+      text-decoration: none;
+      color: white;
+      font-size: 13px;
+      font-weight: 800;
+      padding: 11px 18px;
+      border-radius: 30px;
+      background: #ff2020;
+      box-shadow: 0 0 25px rgba(255,32,32,.25);
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      text-align: center;
+      padding: 120px 0 70px;
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 100px;
+      font-size: 12px;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+      background: #28df72;
+      border-radius: 50%;
+      box-shadow: 0 0 10px #28df72;
+    }
+
+    h1 {
+      font-size: clamp(44px, 8vw, 88px);
+      line-height: .95;
+      letter-spacing: -4px;
+      max-width: 900px;
+      margin: auto;
+      font-weight: 950;
+    }
+
+    h1 span {
+      background: linear-gradient(90deg, #ff2424, #ff6767);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-text {
+      max-width: 650px;
+      margin: 25px auto 0;
+      color: #aaa;
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 35px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 900;
+      font-size: 14px;
+      transition: .25s;
+    }
+
+    .primary-btn {
+      background: #ff2020;
+      color: #fff;
+      box-shadow: 0 12px 40px rgba(255,32,32,.25);
+    }
+
+    .secondary-btn {
+      color: white;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.04);
+    }
+
+    .primary-btn:hover,
+    .secondary-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 760px;
+      margin: 65px auto 0;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+      background: rgba(255,255,255,.025);
+      overflow: hidden;
+    }
+
+    .stat {
+      padding: 24px 10px;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+
+    .stat:last-child {
+      border: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
+
+    .stat small {
+      color: #888;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- SECTION ---------- */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-label {
+      color: #ff3333;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 900;
+      margin-bottom: 13px;
+    }
+
+    .section-title {
+      font-size: clamp(32px, 5vw, 55px);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .section-description {
+      color: #999;
+      max-width: 620px;
+      line-height: 1.7;
+    }
+
+    /* ---------- CARDS ---------- */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 45px;
+    }
+
+    .card {
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.06),
+        rgba(255,255,255,.015)
+      );
+      border-radius: 20px;
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,40,40,.35);
+    }
+
+    .icon {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: rgba(255,32,32,.1);
+      margin-bottom: 22px;
+      font-size: 22px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .card p {
+      color: #8f8f8f;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* ---------- COMMUNITY ---------- */
+
+    .community {
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 28px;
+      padding: 60px 30px;
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(255,32,32,.12), transparent 55%),
+        rgba(255,255,255,.025);
+    }
+
+    .telegram-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 25px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #229ed9;
+      font-size: 31px;
+      box-shadow: 0 15px 50px rgba(34,158,217,.2);
+    }
+
+    .community h2 {
+      font-size: clamp(32px, 6vw, 60px);
+      letter-spacing: -2px;
+      margin-bottom: 15px;
+    }
+
+    .community p {
+      color: #999;
+      max-width: 600px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    .community .primary-btn {
+      margin-top: 28px;
+    }
+
+    /* ---------- STEPS ---------- */
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 45px;
+    }
+
+    .step {
+      position: relative;
+      padding: 30px;
+      border-left: 2px solid #ff2020;
+      background: rgba(255,255,255,.025);
+      border-radius: 0 16px 16px 0;
+    }
+
+    .step-number {
+      font-size: 12px;
+      color: #ff3030;
+      font-weight: 900;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      color: #888;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    /* ---------- DISCLAIMER ---------- */
+
+    .disclaimer {
+      border-top: 1px solid rgba(255,255,255,.07);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+      padding: 35px 0;
+      color: #666;
+      font-size: 11px;
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      padding: 45px 0 90px;
+      text-align: center;
+    }
+
+    footer .logo {
+      margin-bottom: 13px;
+    }
+
+    footer p {
+      color: #666;
+      font-size: 12px;
+    }
+
+    /* ---------- MOBILE CTA ---------- */
+
+    .mobile-cta {
+      display: none;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+
+    @media (max-width: 800px) {
+
+      h1 {
+        letter-spacing: -2.5px;
+      }
+
+      .cards,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.08);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .mobile-cta {
+        display: block;
+        position: fixed;
+        bottom: 15px;
+        left: 15px;
+        right: 15px;
+        z-index: 99;
+      }
+
+      .mobile-cta a {
+        display: block;
+        text-align: center;
+        padding: 16px;
+        border-radius: 14px;
+        background: #ff2020;
+        color: white;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 900;
+        box-shadow: 0 10px 35px rgba(0,0,0,.6);
+      }
+
+      footer {
+        padding-bottom: 110px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="glow one"></div>
+  <div class="glow two"></div>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="container nav-inner">
+      <div class="logo">
+        TRADE WITH <span>PUSHKAR</span>
+      </div>
+
+      <a
+        href="https://t.me/YOUR_TELEGRAM_USERNAME"
+        class="nav-btn"
+        target="_blank"
+      >
+        JOIN TELEGRAM
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+
+      <div class="badge">
+        <span class="dot"></span>
+        TRADING COMMUNITY
+      </div>
+
+      <h1>
+        TRADE SMARTER.<br />
+        <span>GROW TOGETHER.</span>
+      </h1>
+
+      <p class="hero-text">
+        Welcome to Trade With Pushkar — a trading community focused on
+        market insights, live sessions, educational content and a
+        powerful trader network.
+      </p>
+
+      <div class="hero-buttons">
+        <a
+          href="https://t.me/YOUR_TELEGRAM_USERNAME"
+          target="_blank"
+          class="primary-btn"
+        >
+          JOIN FREE TELEGRAM →
+        </a>
+
+        <a href="#benefits" class="secondary-btn">
+          EXPLORE COMMUNITY
+        </a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <strong>24/7</strong>
+          <small>Community Access</small>
+        </div>
+
+        <div class="stat">
+          <strong>LIVE</strong>
+          <small>Market Sessions</small>
+        </div>
+
+        <div class="stat">
+          <strong>FREE</strong>
+          <small>Telegram Community</small>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="container">
+
+      <div class="section-label">WHY JOIN</div>
+
+      <h2 class="section-title">
+        Everything you need<br />
+        in one community.
+      </h2>
+
+      <p class="section-description">
+        Get connected with traders, follow market discussions and
+        stay updated through our Telegram community.
+      </p>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="icon">📊</div>
+          <h3>Market Insights</h3>
+          <p>
+            Follow market discussions, setups and trading-related
+            insights shared with the community.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔴</div>
+          <h3>Live Sessions</h3>
+          <p>
+            Join live trading sessions and follow real-time market
+            discussions with the community.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">⚡</div>
+          <h3>Fast Updates</h3>
+          <p>
+            Stay connected with important updates and trading
+            information through Telegram.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">🎯</div>
+          <h3>Trading Education</h3>
+          <p>
+            Learn concepts, strategies and practical ideas that can
+            help you understand the markets better.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">👥</div>
+          <h3>Trader Community</h3>
+          <p>
+            Connect with like-minded traders and participate in
+            ongoing market conversations.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="icon">📱</div>
+          <h3>Telegram Access</h3>
+          <p>
+            One simple place to access community updates, sessions
+            and trading-related content.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="container">
+
+      <div class="section-label">GET STARTED</div>
+
+      <h2 class="section-title">
+        Join in 3 simple steps.
+      </h2>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">01 / JOIN</div>
+          <h3>Click the Telegram button</h3>
+          <p>
+            Tap any Join button on this page to access the Telegram
+            community.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">02 / CONNECT</div>
+          <h3>Enter the community</h3>
+          <p>
+            Join the channel and stay connected with the latest
+            updates and discussions.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">03 / LEARN</div>
+          <h3>Follow the content</h3>
+          <p>
+            Explore trading-related content, sessions and market
+            discussions shared with members.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TELEGRAM CTA -->
+  <section>
+    <div class="container">
+
+      <div class="community">
+
+        <div class="telegram-icon">➤</div>
+
+        <h2>Ready to join?</h2>
+
+        <p>
+          Join the Trade With Pushkar Telegram community and stay
+          connected with our latest trading content and updates.
+        </p>
+
+        <a
+          href="https://t.me/YOUR_TELEGRAM_USERNAME"
+          target="_blank"
+          class="primary-btn"
+        >
+          JOIN FREE TELEGRAM →
+        </a>
+
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    <div class="container">
+      Trading and investing involve risk. The information provided
+      through this website and community is for educational and
+      informational purposes and should not be considered personalized
+      financial advice. Past performance does not guarantee future
+      results.
+    </div>
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+
+      <div class="logo">
+        TRADE WITH <span>PUSHKAR</span>
+      </div>
+
+      <p>
+        © 2026 Trade With Pushkar. All rights reserved.
+      </p>
+
+    </div>
+  </footer>
+
+
+  <!-- MOBILE STICKY CTA -->
+  <div class="mobile-cta">
+    <a
+      href="https://t.me/YOUR_TELEGRAM_USERNAME"
+      target="_blank"
+    >
+      🚀 JOIN FREE TELEGRAM
+    </a>
+  </div>
+
+</body>
+</html>
